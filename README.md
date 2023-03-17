@@ -1,6 +1,18 @@
-# gdsc_notepad
+# Notaty - نوتاتي
 
-A new Flutter project.
+A brand-new `Notes App` brought to you by GDSC - SCU during their "Flutter Course".
+
+## Features
+
+- The app supports `Online` and `Offline` CRUD operations for your notes.
+
+- The app supports `Push Notifications` in case of new updates based on `Firebase Cloud Messaging - FCM`.
+
+- The app is built based on `Clean Code` & `SOLID` principles as possible.
+
+## Credits
+
+All the credits of the app goes to [Omar Yehia](https://github.com/OmarYehiaDev/) & [Ahmed Reda](https://github.com/Ahmed-Reda0) & [Amira Nasser](https://github.com/amira20nasser/)
 
 ## Getting Started
 
