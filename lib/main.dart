@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 
-import 'app/views/notepad_view.dart';
+import 'app/modules/notes/notepad_view.dart';
+import 'app/services/prefs.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Prefs.initPrefs();
   runApp(const MyApp());
 }
 
@@ -14,7 +17,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'GDSC Notepad',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
