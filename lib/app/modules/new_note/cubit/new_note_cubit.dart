@@ -17,24 +17,20 @@ class NewNoteCubit extends Cubit<NewNoteState> {
   TextEditingController contentCtrl = TextEditingController();
   Note note = Note.empty();
 
+  int get charsNumber => (titleCtrl.text.length + contentCtrl.text.length).toInt();
+  int get wordsNumber {
+    int titleWordsLength = titleCtrl.text.isNotEmpty ? titleCtrl.text.split(" ").length : 0;
+    int contentWordsLength = contentCtrl.text.isNotEmpty ? contentCtrl.text.split(" ").length : 0;
+    return titleWordsLength + contentWordsLength;
+  }
+
   void changeImportance(NoteImportance? value) {
     emit(NewNoteLoading());
     note = note.copyWith(importance: value);
     emit(NewNoteUpdated());
   }
 
-  Color switchColors(NoteImportance e) {
-    switch (e) {
-      case NoteImportance.high:
-        return Colors.red;
-      case NoteImportance.moderate:
-        return Colors.orange;
-      default:
-        return Colors.green;
-    }
-  }
-
-  void saveNote() async {
+  void saveNote(BuildContext context) async {
     emit(NewNoteLoading());
     note = note.copyWith(
       id: "${titleCtrl.text}test",
@@ -55,6 +51,9 @@ class NewNoteCubit extends Cubit<NewNoteState> {
       log(notes.toString());
       log(notes.last.title);
       log(notes.last.content);
+      if (context.mounted) {
+        Navigator.of(context).pop(true);
+      }
     }
   }
 }

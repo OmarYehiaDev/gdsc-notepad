@@ -1,4 +1,4 @@
-package com.example.gdsc_notepad
+package com.spiderdevs.notaty
 
 import io.flutter.embedding.android.FlutterActivity
 

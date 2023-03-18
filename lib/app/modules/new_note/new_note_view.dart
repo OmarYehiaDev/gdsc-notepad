@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gdsc_notepad/app/models/note_importance.dart';
 import 'package:gdsc_notepad/app/modules/new_note/cubit/new_note_cubit.dart';
 import 'package:gdsc_notepad/app/utils/context_helpers.dart';
 import 'package:intl/intl.dart';
+
+import '../../utils/helper_functions.dart';
 
 class NewNoteView extends StatelessWidget {
   const NewNoteView({super.key});
@@ -14,12 +17,12 @@ class NewNoteView extends StatelessWidget {
       onTap: () {
         FocusScope.of(context).unfocus();
       },
-      child: BlocProvider(
+      child: BlocProvider<NewNoteCubit>(
         create: (context) => NewNoteCubit(),
         child: BlocBuilder<NewNoteCubit, NewNoteState>(
           builder: (context, state) {
             final cubit = NewNoteCubit.of(context);
-            if (state == NewNoteLoading()) {
+            if (state is NewNoteLoading) {
               return Center(
                 child: CircularProgressIndicator(
                   color: Colors.orange.shade800,
@@ -70,32 +73,67 @@ class NewNoteView extends StatelessWidget {
               ),
               body: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.only(
-                      top: 10,
-                      bottom: 10,
-                    ),
-                    child: Row(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 20, right: 5),
-                          child: Text(
-                            DateFormat.yMMMMd().format(DateTime.now()),
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w500,
-                              fontSize: 11,
+                  Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 10,
+                          bottom: 10,
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20, right: 5),
+                              child: Text(
+                                DateFormat.yMMMMd().format(cubit.note.lastUpdatedAt),
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 11,
+                                ),
+                              ),
                             ),
-                          ),
+                            Text(
+                              DateFormat.jm().format(cubit.note.lastUpdatedAt),
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 11,
+                              ),
+                            ),
+                          ],
                         ),
-                        Text(
-                          DateFormat.jm().format(DateTime.now()),
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w500,
-                            fontSize: 11,
-                          ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          top: 10,
+                          bottom: 10,
                         ),
-                      ],
-                    ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 20, right: 5),
+                              child: Text(
+                                "Charachters: ${cubit.charsNumber} char",
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 11,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              "Words: ${cubit.wordsNumber} word",
+                              style: const TextStyle(
+                                fontWeight: FontWeight.w500,
+                                fontSize: 11,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
 
                   //title
@@ -142,7 +180,7 @@ class NewNoteView extends StatelessWidget {
                                         padding: const EdgeInsets.all(8),
                                         decoration: BoxDecoration(
                                           color: e == cubit.note.importance
-                                              ? cubit.switchColors(e)
+                                              ? Helpers.switchColors(e)
                                               : Colors.white,
                                           borderRadius: BorderRadius.circular(15),
                                         ),
@@ -186,6 +224,10 @@ class NewNoteView extends StatelessWidget {
                     ),
                     child: TextFormField(
                       controller: cubit.contentCtrl,
+                      textInputAction: TextInputAction.newline,
+                      minLines: 1,
+                      maxLines: null,
+                      maxLengthEnforcement: MaxLengthEnforcement.truncateAfterCompositionEnds,
                       decoration: const InputDecoration.collapsed(
                         hintText: "Note something down",
                       ),
@@ -197,7 +239,7 @@ class NewNoteView extends StatelessWidget {
               persistentFooterButtons: [
                 OutlinedButton(
                   onPressed: () {
-                    cubit.saveNote();
+                    cubit.saveNote(context);
                   },
                   style: ButtonStyle(
                     alignment: AlignmentDirectional.center,
@@ -206,7 +248,7 @@ class NewNoteView extends StatelessWidget {
                     ),
                   ),
                   child: const Text(
-                    "Save Note",
+                    "Save note & Go back",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 20,
