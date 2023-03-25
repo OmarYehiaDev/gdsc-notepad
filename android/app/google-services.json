@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "506404873274",
+    "project_id": "notaty-gdsc",
+    "storage_bucket": "notaty-gdsc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:506404873274:android:122b3bff39f804c8580103",
+        "android_client_info": {
+          "package_name": "com.spiderdevs.notaty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "506404873274-9i8hr6bovqjl07b8i3n57ns819bt2610.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.spiderdevs.notaty",
+            "certificate_hash": "ded28d0315350c32a18c6744c027f028c3b1762e"
+          }
+        },
+        {
+          "client_id": "506404873274-0d1m73rotfth64l3hotomk6dsfcch1pt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA17WGAbeJWX_t_tnRQsdgMG1WUcxFf-WU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "506404873274-0d1m73rotfth64l3hotomk6dsfcch1pt.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "506404873274-n9hafrlldqc3vsf6sj8atdkod2bljl9t.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.spiderdevs.notaty"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

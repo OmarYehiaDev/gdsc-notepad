@@ -39,6 +39,10 @@ dependencies:
   flutter_bloc: ^8.1.2
   shared_preferences: ^2.0.18
   get_it: ^7.2.0
+  firebase_core: ^2.8.0
+  firebase_auth: ^4.2.2
+  cloud_firestore: ^4.4.5
+  google_sign_in: ^6.0.2
 
 dev_dependencies:
   change_app_package_name: ^1.1.0
