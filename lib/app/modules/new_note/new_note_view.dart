@@ -86,9 +86,11 @@ class NewNoteView extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 20, right: 5),
+                              padding:
+                                  const EdgeInsets.only(left: 20, right: 5),
                               child: Text(
-                                DateFormat.yMMMMd().format(cubit.note.lastUpdatedAt),
+                                DateFormat.yMMMMd()
+                                    .format(cubit.note.lastUpdatedAt),
                                 style: const TextStyle(
                                   fontWeight: FontWeight.w500,
                                   fontSize: 11,
@@ -114,7 +116,8 @@ class NewNoteView extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(left: 20, right: 5),
+                              padding:
+                                  const EdgeInsets.only(left: 20, right: 5),
                               child: Text(
                                 "Charachters: ${cubit.charsNumber} char",
                                 style: const TextStyle(
@@ -167,34 +170,36 @@ class NewNoteView extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          width: context.width * 0.325,
+                          width: context.width * 0.328,
                           child: Center(
                             child: DropdownButton<NoteImportance>(
                               alignment: AlignmentDirectional.center,
                               value: cubit.note.importance,
-                              selectedItemBuilder: (context) => NoteImportance.values
-                                  .map(
-                                    (e) => DropdownMenuItem<NoteImportance>(
-                                      value: e,
-                                      child: Container(
-                                        padding: const EdgeInsets.all(8),
-                                        decoration: BoxDecoration(
-                                          color: e == cubit.note.importance
-                                              ? Helpers.switchColors(e)
-                                              : Colors.white,
-                                          borderRadius: BorderRadius.circular(15),
-                                        ),
-                                        child: Text(
-                                          e.name.toUpperCase(),
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.w500,
-                                            color: Colors.white,
+                              selectedItemBuilder: (context) =>
+                                  NoteImportance.values
+                                      .map(
+                                        (e) => DropdownMenuItem<NoteImportance>(
+                                          value: e,
+                                          child: Container(
+                                            padding: const EdgeInsets.all(8),
+                                            decoration: BoxDecoration(
+                                              color: e == cubit.note.importance
+                                                  ? Helpers.switchColors(e)
+                                                  : Colors.white,
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
+                                            child: Text(
+                                              e.name.toUpperCase(),
+                                              style: const TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                color: Colors.white,
+                                              ),
+                                            ),
                                           ),
                                         ),
-                                      ),
-                                    ),
-                                  )
-                                  .toList(),
+                                      )
+                                      .toList(),
                               items: NoteImportance.values
                                   .map(
                                     (e) => DropdownMenuItem<NoteImportance>(
@@ -227,7 +232,8 @@ class NewNoteView extends StatelessWidget {
                       textInputAction: TextInputAction.newline,
                       minLines: 1,
                       maxLines: null,
-                      maxLengthEnforcement: MaxLengthEnforcement.truncateAfterCompositionEnds,
+                      maxLengthEnforcement:
+                          MaxLengthEnforcement.truncateAfterCompositionEnds,
                       decoration: const InputDecoration.collapsed(
                         hintText: "Note something down",
                       ),
